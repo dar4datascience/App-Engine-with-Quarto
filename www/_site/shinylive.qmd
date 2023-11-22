@@ -1,6 +1,5 @@
 ---
 title: Shinylive in Quarto example
-format: html
 filters:
   - shinylive
 ---
