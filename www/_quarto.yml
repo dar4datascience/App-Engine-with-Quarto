@@ -7,6 +7,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: shinylive.qmd
+        text: Shiny Live
       - about.qmd
 
 format:
