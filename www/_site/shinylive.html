@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Demo App Engine With Quarto - Loading files in Shinylive apps in Quarto</title>
+<title>Demo App Engine With Quarto - Shinylive applications embedded in Quarto documents</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -144,14 +110,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#embedded-shiny-application" id="toc-embedded-shiny-application" class="nav-link active" data-scroll-target="#embedded-shiny-application">Embedded Shiny application</a></li>
+  <li><a href="#editor-with-app" id="toc-editor-with-app" class="nav-link" data-scroll-target="#editor-with-app">Editor with app</a></li>
+  <li><a href="#leaflet-example" id="toc-leaflet-example" class="nav-link" data-scroll-target="#leaflet-example">Leaflet Example</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Loading files in Shinylive apps in Quarto</h1>
+<h1 class="title">Shinylive applications embedded in Quarto documents</h1>
 </div>
 
 
@@ -166,111 +140,200 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The following application shows three different ways of adding files to a Shinylive app embedded in a Quarto document.</p>
-<p>The first is a text file embedded in the code block, like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{shinylive-python}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">## file: fruit.csv</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">id</span>,name,count</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">1,</span><span class="st">"apple"</span><span class="ex">,20</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">2,</span><span class="st">"orange"</span><span class="ex">,12</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">3,</span><span class="st">"grape"</span><span class="ex">,100</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The second is a binary file embedded in the code block.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{shinylive-python}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">## file: fruit.pickle</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">## type: binary</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">gASVVAAAAAAAAABdlCh9lCiMAmlklEsEjARuYW1llIwEcGVhcpSMBWNvdW50lEsIdX2UKGgCSwVoA4wGYmFuYW5hlGgFSwZ1fZQoaAJLBmgDjARwbHVtlGgFSwt1ZS4</span><span class="op">=</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The third is a text file that is deployed as part of the Quarto-generated website, and loaded via http request, by using <code>pyodide.http.pyfetch()</code>. Note that <code>pyodide.http.pyfetch()</code> will only work in Shinylive; a normal Shiny deployment will not have <code>pyodide</code> available. If you want to abstract the code so that you can use the same function in both normal Shiny and Shinylive, see the <code>get_url()</code> function in this <a href="https://shinylive.io/py/examples/#fetch-data-from-a-web-api">download demo app</a>.</p>
+<section id="embedded-shiny-application" class="level3">
+<h3 class="anchored" data-anchor-id="embedded-shiny-application">Embedded Shiny application</h3>
+<p>To display a running Shiny app, use a code block with <code>{shinylive-python}</code>.</p>
 <pre class="shinylive-python" data-engine="python"><code>#| standalone: true
-#| components: [editor, viewer]
-#| layout: vertical
-#| viewerHeight: 400
-## file: app.py
-from pathlib import Path
-from os.path import dirname
-import pickle as pkl
-from shiny import App, render, ui, Inputs, Outputs, Session
+#| viewerHeight: 420
 
-appdir = Path(__file__).parent
+from shiny import App, render, ui
+import numpy as np
+import matplotlib.pyplot as plt
 
 app_ui = ui.page_fluid(
-    ui.row(
-        ui.h4("Embedded CSV:"),
-        ui.output_text_verbatim("embedded_csv"),
-        ui.h4("Embedded pickle file:"),
-        ui.output_text_verbatim("embedded_pickle"),
-        ui.h4("Downloaded CSV:"),
-        ui.output_text_verbatim("download_csv"),
-    )
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_slider("period", "Period", 0.5, 4, 1, step=0.5),
+            ui.input_slider("amplitude", "Amplitude", 0, 2, 1, step=0.25),
+            ui.input_slider("shift", "Phase shift", 0, 2, 0, step=0.1),
+        ),
+        ui.panel_main(
+            ui.output_plot("plot"),
+        ),
+    ),
 )
 
 
-def server(input: Inputs, output: Outputs, session: Session):
+def server(input, output, session):
     @output
-    @render.text
-    def embedded_csv():
-        with open(appdir / "fruit.csv", "r") as file:
-            content = file.read()
-        return content
-
-    @output
-    @render.text
-    def embedded_pickle():
-        with open(appdir / "fruit.pickle", "rb") as file:
-            data = pkl.load(file)
-        return str(data)
-
-    @output
-    @render.text
-    async def download_csv():
-        file_url = dirname(dirname(get_current_url(input))) + "/fruit_data.csv"
-        resp = await fetch_url(file_url)
-        return str(resp)
+    @render.plot(alt="Sine wave")
+    def plot():
+        t = np.arange(0.0, 4.0, 0.01)
+        s = input.amplitude() * np.sin(
+            2 * np.pi / input.period() * (t - input.shift() / 2)
+        )
+        fig, ax = plt.subplots()
+        ax.set_ylim([-2, 2])
+        ax.plot(t, s)
+        ax.grid()
 
 
 app = App(app_ui, server)
+</code></pre>
+<p>Note that the code block currently must have <code>#| standalone: true</code>, which indicates that the code represents a complete Shiny application, as opposed to one which has parts spread throughout the document (which will be supported in the future).</p>
+<p>The example above also uses <code>#| viewerHeight: 420</code> to set the height of the viewer to 420 pixels.</p>
+</section>
+<section id="editor-with-app" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="editor-with-app">Editor with app</h3>
+<p>If you want to display an editor panel with along with the running application, use <code>#| components: [editor, viewer]</code>. Users will be able to use the editor to modify the code and re-run the application.</p>
+<div class="column-page-inset-right">
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [editor, viewer]
 
+from shiny import App, render, ui
 
-def get_current_url(input: Inputs) -&gt; str:
-    return (
-        input[".clientdata_url_protocol"]()
-        + "//"
-        + input[".clientdata_url_hostname"]()
-        + ":"
-        + input[".clientdata_url_port"]()
-        + input[".clientdata_url_pathname"]()
+app_ui = ui.page_fluid(
+    ui.input_slider("n", "N", 0, 100, 40),
+    ui.output_text_verbatim("txt"),
+)
+
+def server(input, output, session):
+    @output
+    @render.text
+    def txt():
+        return f"The value of n*2 is {input.n() * 2}"
+
+app = App(app_ui, server)
+</code></pre>
+</div>
+<p>The default width in a Quarto document is somewhat narrow for showing the editor and viewer next to each other. It can be made wider with <a href="https://quarto.org/docs/authoring/article-layout.html">Quarto layout containers</a>. In the example above it uses <code>column-page-inset-right</code>.</p>
+<section id="vertically-stacked-components" class="level4">
+<h4 class="anchored" data-anchor-id="vertically-stacked-components">Vertically stacked components</h4>
+<p>To display the editor above the code, use <code>#| layout: vertical</code>.</p>
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 300
+
+from shiny import App, render, ui
+
+app_ui = ui.page_fluid(
+    ui.input_slider("n", "N", 0, 100, 40),
+    ui.output_text_verbatim("txt"),
+)
+
+def server(input, output, session):
+    @output
+    @render.text
+    def txt():
+        return f"The value of n*2 is {input.n() * 2}"
+
+app = App(app_ui, server)
+</code></pre>
+</section>
+<section id="multiple-files" class="level4">
+<h4 class="anchored" data-anchor-id="multiple-files">Multiple files</h4>
+<p>For apps that have multiple files, you can mark the start of each file with <code>## file: filename.py</code>.</p>
+<p>Binary files can be used with <code>## type: binary</code>, and the file must be base64-encoded. This can be done with the <code>base64</code> command line tool.</p>
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+## file: app.py
+from pathlib import Path
+from shiny import App, render, ui, Inputs, Outputs, Session
+from utils import square
+
+app_ui = ui.page_fluid(
+    ui.row(
+        ui.column(6,
+            ui.input_slider("n", "Make a Shiny square:", min=0, max=6, value=2)
+        ),
+        ui.column(6,
+            ui.output_ui("images"),
+        )
     )
+)
 
+def server(input: Inputs, output: Outputs, session: Session):
+    @output
+    @render.ui
+    def images():
+        img = ui.img(src="logo.png", style="width: 40px;")
+        return square(img, input.n())
 
-async def fetch_url(url: str, type: str = "string"):
-    import pyodide.http
+www_dir = Path(__file__).parent / "www"
+app = App(app_ui, server, static_assets=www_dir)
 
-    response = await pyodide.http.pyfetch(url)
+## file: utils.py
+from shiny import ui
 
-    if type == "json":
-        # .json() parses the response as JSON and converts to dictionary.
-        return await response.json()
-    elif type == "string":
-        # .string() returns the response as a string.
-        return await response.string()
-    elif type == "bytes":
-        # .bytes() returns the response as a byte object.
-        return await response.bytes()
-    else:
-        return None
+def square(x, n):
+    row = ui.div([x] * n)
+    return ui.div([row] * n)
 
-## file: fruit.csv
-id,name,count
-1,"apple",20
-2,"orange",12
-3,"grape",100
-
-## file: fruit.pickle
+## file: www/logo.png
 ## type: binary
-gASVVAAAAAAAAABdlCh9lCiMAmlklEsEjARuYW1llIwEcGVhcpSMBWNvdW50lEsIdX2UKGgCSwVoA4wGYmFuYW5hlGgFSwZ1fZQoaAJLBmgDjARwbHVtlGgFSwt1ZS4=</code></pre>
+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</code></pre>
+</section>
+</section>
+<section id="leaflet-example" class="level2">
+<h2 class="anchored" data-anchor-id="leaflet-example">Leaflet Example</h2>
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+
+import ipyleaflet as L
+from htmltools import css
+from shiny import App, reactive, render, ui
+from shinywidgets import output_widget, reactive_read, register_widget
+
+app_ui = ui.page_fluid(
+    ui.div(
+        ui.input_slider("zoom", "Map zoom level", value=12, min=1, max=18),
+        ui.output_ui("map_bounds"),
+        style=css(
+            display="flex", justify_content="center", align_items="center", gap="2rem"
+        ),
+    ),
+    output_widget("map"),
+)
 
 
+def server(input, output, session):
+    # Initialize and display when the session starts (1)
+    map = L.Map(center=(51.476852, -0.000500), zoom=12, scroll_wheel_zoom=True)
+    # Add a distance scale
+    map.add_control(L.leaflet.ScaleControl(position="bottomleft"))
+    register_widget("map", map)
+
+    # When the slider changes, update the map's zoom attribute (2)
+    @reactive.Effect
+    def _():
+        map.zoom = input.zoom()
+
+    # When zooming directly on the map, update the slider's value (2 and 3)
+    @reactive.Effect
+    def _():
+        ui.update_slider("zoom", value=reactive_read(map, "zoom"))
+
+    # Everytime the map's bounds change, update the output message (3)
+    @output
+    @render.ui
+    def map_bounds():
+        center = reactive_read(map, "center")
+        if len(center) == 0:
+            return
+
+        lat = round(center[0], 4)
+        lon = (center[1] + 180) % 360 - 180
+        lon = round(lon, 4)
+
+        return ui.p(f"Latitude: {lat}", ui.br(), f"Longitude: {lon}")
+
+
+app = App(app_ui, server)
+</code></pre>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
